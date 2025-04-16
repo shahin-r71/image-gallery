@@ -1,4 +1,3 @@
-// Create file: components/Header.tsx
 "use client";
 
 import * as React from "react";
@@ -8,9 +7,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import PhotoCamera from "@mui/icons-material/PhotoCamera"; // Example Logo Icon
-import IconButton from "@mui/material/IconButton"; // If logo is clickable
-import CloudinaryUploader from "./CloudinaryUploader"; // Assuming this provides the button
+import PhotoCamera from "@mui/icons-material/PhotoCamera"; 
+import IconButton from "@mui/material/IconButton"; 
+import CloudinaryUploader from "./CloudinaryUploader"; 
 
 interface HeaderProps {
 	searchTerm: string;

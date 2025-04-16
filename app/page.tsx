@@ -1,6 +1,5 @@
 "use client"
 import Footer from "@/components/Footer";
-// import CloudinaryUploader from "@/components/CloudinaryUploader";
 import Header from "@/components/Header";
 import ImageGallery from "@/components/ImageGallery";
 import { useState } from "react";

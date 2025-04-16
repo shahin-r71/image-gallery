@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-// import { CldImage } from "next-cloudinary";
 import ImageDialogProvider from "./DialogProvider";
-// import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
@@ -25,11 +23,6 @@ interface CloudinaryResource {
 interface ImgGalleryProp {
 	searchTerm: string;
 }
-// interface CloudinaryApiResponse {
-// 	resources: CloudinaryResource[];
-// 	total_count: number;
-// 	next_cursor?: string;
-// }
 
 // --- Simple Debounce Hook ---
 function useDebounce<T>(value: T, delay: number): T {
@@ -117,18 +110,7 @@ export default function ImageGallery({ searchTerm }: ImgGalleryProp) {
 						[pageNum]: data.next_cursor,
 					}));
 				}
-				// else {
-				// 	// Ensure cursor for this page number is removed if it's the last page
-				// 	setPageCursors((prev) => {
-				// 		// Only modify if the key actually exists
-				// 		if (prev.hasOwnProperty(pageNum)) {
-				// 			const newCursors = { ...prev };
-				// 			delete newCursors[pageNum];
-				// 			return newCursors;
-				// 		}
-				// 		return prev; // Return unchanged if key didn't exist
-				// 	});
-				// }
+
 			} catch (err) {
 				console.error(
 					`Error fetching page ${pageNum} with search "${currentSearchTerm}":`,
