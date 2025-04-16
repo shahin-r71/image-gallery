@@ -37,7 +37,7 @@ export default function Header({
 				<Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
 					<IconButton
 						edge="start"
-						color="inherit"
+						color="primary"
 						aria-label="logo"
 						sx={{ display: "inline-flex" }}
 					>

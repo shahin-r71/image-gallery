@@ -6,9 +6,9 @@ import Container from "@mui/material/Container";
 
 function Copyright() {
 	return (
-		<Typography variant="body2" color="text.secondary" align="center">
+		<Typography variant="body2" color="gray[500]" align="center">
 			{"Copyright © "}
-			<Link color="inherit" href="#">
+			<Link color="primary" href="#">
 				SnapGallery
 			</Link>{" "}
 			{new Date().getFullYear()}
@@ -30,7 +30,7 @@ export default function Footer() {
                 width: "100%",
                 backgroundColor: (theme) =>
 					theme.palette.mode === "light"
-						? theme.palette.grey[200]
+						? theme.palette.secondary.main
 						: theme.palette.grey[800],
 			}}
 		>
