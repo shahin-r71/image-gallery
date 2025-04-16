@@ -9,6 +9,8 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import CircularProgress from "@mui/material/CircularProgress";
+import Typography from "@mui/material/Typography";
 
 // Define interfaces for expected Cloudinary API response structure
 interface CloudinaryResource {
@@ -17,7 +19,7 @@ interface CloudinaryResource {
 	secure_url: string;
 	height: number;
 	width: number;
-  display_name: string;
+	display_name: string;
 }
 interface ImgGalleryProp {
 	searchTerm: string;
@@ -67,11 +69,7 @@ export default function ImageGallery({ searchTerm }: ImgGalleryProp) {
 	// const isSmallScreen = useMediaQuery(theme.breakpoints.up("sm")); // >= 600px
 
 	// Determine columns based on screen size
-	const columns = isLargeScreen
-		? 4
-		: isMediumScreen
-			? 3
-			: 2; // Default to 2 on xs screens
+	const columns = isLargeScreen ? 4 : isMediumScreen ? 3 : 2; // Default to 2 on xs screens
 
 	const fetchImages = useCallback(
 		async (pageNum: number, currentSearchTerm: string) => {
@@ -117,8 +115,8 @@ export default function ImageGallery({ searchTerm }: ImgGalleryProp) {
 						...prev,
 						[pageNum]: data.next_cursor,
 					}));
-        }
-        // else {
+				}
+				// else {
 				// 	// Ensure cursor for this page number is removed if it's the last page
 				// 	setPageCursors((prev) => {
 				// 		// Only modify if the key actually exists
@@ -193,7 +191,22 @@ export default function ImageGallery({ searchTerm }: ImgGalleryProp) {
 
 	// --- Render Logic ---
 	if (loading && images.length === 0)
-		return <div className="text-center mt-8">Loading images...</div>; // Show loading only on initial load
+		return (
+			<Box
+				sx={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					justifyContent: "center",
+					height: "50vh",
+				}}
+			>
+				<CircularProgress size={60} thickness={4} />
+				<Typography variant="h6" sx={{ mt: 2 }}>
+					Loading Images...
+				</Typography>
+			</Box>
+		); // Show loading only on initial load
 	if (error)
 		return (
 			<div className="text-center mt-8 text-red-500">Error: {error}</div>
@@ -202,20 +215,21 @@ export default function ImageGallery({ searchTerm }: ImgGalleryProp) {
 	return (
 		<main className="flex items-center justify-center flex-col w-full h-[85vh]">
 			{/* ... (heading - maybe update based on search?) ... */}
-			<h2 className="text-3xl text-center mt-4 mb-2">
+			<h2 className="text-2xl text-center mt-4 mb-2">
 				{debouncedSearchTerm
 					? `Results for "${debouncedSearchTerm}"`
 					: ""}
 			</h2>
 			{/* Show "No images found" only when not loading and images array is empty */}
-			{!loading && images.length === 0 && (
-				<div className="text-center mt-8">
+      {!loading && images.length === 0 && (
+        <Typography variant="h6" sx={{ mt: 2,color:"red" }}>
 					No images found
-					{debouncedSearchTerm
+          {debouncedSearchTerm
 						? ` matching "${debouncedSearchTerm}"`
 						: ""}
 					.
-				</div>
+				</Typography>
+				
 			)}
 
 			{/* Image Grid - Only render if images exist */}
