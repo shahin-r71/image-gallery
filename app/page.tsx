@@ -1,8 +1,23 @@
+"use client"
+import Footer from "@/components/Footer";
+// import CloudinaryUploader from "@/components/CloudinaryUploader";
+import Header from "@/components/Header";
+import ImageGallery from "@/components/ImageGallery";
+import { useState } from "react";
 
 export default function Home() {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchTerm(event.target.value); // Update search term immediately for input responsiveness
+  };
   return (
-    <div>
-      <h1>Hello World</h1>
-    </div>
+		<div className="h-[100vh]">
+			<Header
+				searchTerm={searchTerm}
+				handleSearchChange={handleSearchChange}
+			/>
+      <ImageGallery searchTerm={searchTerm} />
+      <Footer />
+		</div>
   );
 }

@@ -4,12 +4,13 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "../utils/theme";
 import { Roboto } from "next/font/google";
+import "./globals.css";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700"],
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-roboto", 
+  variable: "--font-roboto",
 });
 
 export default function RootLayout(props: { children: React.ReactNode }) {
