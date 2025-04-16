@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ImageGallery from "@/components/ImageGallery";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -16,8 +17,9 @@ export default function Home() {
 				searchTerm={searchTerm}
 				handleSearchChange={handleSearchChange}
 			/>
-      <ImageGallery searchTerm={searchTerm} />
-      <Footer />
+			<ImageGallery searchTerm={searchTerm} />
+			<Footer />
+			<ToastContainer />
 		</div>
   );
 }

@@ -187,6 +187,7 @@ export default function ImageGallery({ searchTerm }: ImgGalleryProp) {
 		console.log(
 			`Image deleted, re-fetching page ${currentPage} with search "${debouncedSearchTerm}"...`
 		);
+		
 		fetchImages(currentPage, debouncedSearchTerm);
 	}, [currentPage, debouncedSearchTerm, fetchImages]); // fetchImages needed here
 

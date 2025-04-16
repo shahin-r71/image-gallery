@@ -11,7 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import ImgDialog from "./ImgDialog";
-
+import {  toast } from "react-toastify";
 
 // Update interface to match actual data (asset_id from Cloudinary)
 interface ImageProps {
@@ -78,7 +78,10 @@ function ImageContent({
 						throw new Error("Failed to delete image");
 					}
 
-					dialogs.alert("Deleted!");
+					toast.success("Image deleted successfully!", {
+						position: "top-center",
+						autoClose: 3000,
+					});
 					// Call the callback passed from ImageGallery to trigger refetch
 					onDeleteSuccess();
 				} catch (error) {
@@ -93,13 +96,15 @@ function ImageContent({
 			}
 		}
 	};
-	return (		
-		<ImgDialog
-			handleDelete={handleDelete}
-			image={image}
-			isLoading={isDeleting}
-		/>
-
+	return (
+		<>
+			<ImgDialog
+				handleDelete={handleDelete}
+				image={image}
+				isLoading={isDeleting}
+			/>
+			
+		</>
 	);
 }
 
