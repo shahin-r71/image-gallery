@@ -11,6 +11,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
+import CloudinaryUploader from "./CloudinaryUploader";
 
 // Define interfaces for expected Cloudinary API response structure
 interface CloudinaryResource {
@@ -221,15 +222,16 @@ export default function ImageGallery({ searchTerm }: ImgGalleryProp) {
 					: ""}
 			</h2>
 			{/* Show "No images found" only when not loading and images array is empty */}
-      {!loading && images.length === 0 && (
-        <Typography variant="h6" sx={{ mt: 2,color:"red" }}>
+			{!loading && images.length === 0 && (
+				<Typography variant="h6" sx={{ mt: 2, color: "red" }}>
 					No images found
-          {debouncedSearchTerm
-						? ` matching "${debouncedSearchTerm}"`
-						: ""}
+					{debouncedSearchTerm ? (
+						` matching "${debouncedSearchTerm}"`
+					) : (
+						<CloudinaryUploader />
+					)}
 					.
 				</Typography>
-				
 			)}
 
 			{/* Image Grid - Only render if images exist */}
